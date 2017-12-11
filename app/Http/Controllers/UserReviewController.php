@@ -25,7 +25,17 @@ class UserReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'order_id' => 'required',
+            'product_id' => 'required',
+            'user_id' => 'required',
+            'rating' => 'required',
+            'review' => 'required',
+        ]);
+
+        $review = new UserReview($request->all());
+
+        return $review;
     }
 
     /**
@@ -36,7 +46,7 @@ class UserReviewController extends Controller
      */
     public function show(UserReview $userReview)
     {
-        //
+        return $userReview;
     }
 
     /**
@@ -48,7 +58,17 @@ class UserReviewController extends Controller
      */
     public function update(Request $request, UserReview $userReview)
     {
-        //
+        $request->validate([
+            'order_id' => 'required',
+            'product_id' => 'required',
+            'user_id' => 'required',
+            'rating' => 'required',
+            'review' => 'required',
+        ]);
+
+        $userReview->update($request->all());
+
+        return $userReview;
     }
 
     /**
@@ -59,6 +79,8 @@ class UserReviewController extends Controller
      */
     public function destroy(UserReview $userReview)
     {
-        //
+        $userReview->delete();
+
+        return $userReview;
     }
 }
